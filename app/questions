@@ -1,11 +1,56 @@
 
 1) Explain REST
 
+    REST is an architectural style that allows to create web services and expose resources through it, it works over the HTTP protocol.
+
 2) Explain the architectural style for the creation of a web API (client server communication, formatting language, number of servers, etc.)
 
+There is multiple possible answers to this question, according to the needs, but i think we can divide the answer in the following categories:
+
+Protocol and communication
+    If the communication between the client and the server are mainly synchronous and initiated by the client
+    (i mean the client needs a response to display something) we can simply use REST to build our web service as well as graphQl.
+    There is also the option of using Websocket in the case of bidirectional communications.
+
+Formatting language:
+    If using REST, i Json is the standard, if using graphQl we would use the graphql DSL.
+
+Internally - Deployment
+    A good practice i like to follow is "monolith first", so if the project is started from scratch or the domain is really simple
+    i would do a single app, otherwise, if the domain context is more complex i would split it into multiple domain-oriented
+    micro-services.
+    As far as the deployment is concerned i would go by default toward a 'containerized' architecture, probably Kubernetes, because i know it.
+    It would allow to enable observability and high availability, with readiness/liveness, pod disruption, (auto)scaling, rolling-upgrade etc.
+
+Internally - Architecture
+    I would encourage domain driven design in most cases.
+    Communication between micro services can be either asynchronous with message broker for example, or simply using HTTP (REST and graphQL again).
+    There is other options for the communication between micro services like gRPC for example, using protobuf serialization to enable fast communications.
+    In either cases the communications between micro-services should be secured with TLS certificate.
+
+
 3) What are the best practices when deploying an application in the cloud
+
+    I'm afraid i don't understand the specificity of deploying an application into the cloud.
+    I thinks the best practices are more or less the same, either the application is on-premise or into the cloud.
+    We probably have to put extra attention to the security since cloud providers are more prone to be attacked.
+    We also want to monitor the cost of the infrastructure wisely, because it is really easy to break the bank with
+    cloud computing services.
 
 4) What are your best strength : infra ? DB ? web ?
 Give us detail about it
 
+    My biggest strength is probably the Data part and the web in second position.
+    I worked a lot as a Data Engineer so i have good amount of knowledge about data storage and data transformation techniques
+    and best practice, i'm especially interested on the performance problematics.
+    I also have quite a lot of experience with web back-end development, and while i still have to learn in every domain, i'm very
+    interested in both web and data development.
+
 5) Among all the projects you have worked on. Which architecture do you enjoy the most? explain why ?
+
+    I think it was at AT Internet few years ago, it was my first experience as a Data Engineer.
+    The architecture was interesting because of multiple reasons, first, we put the emphasis on building high quality micro services.
+    It was also event-driven, it reacted to notification to allow automating the database schema evolution and deployment, the Spark job scheduling,
+    the data ingestion process, monitoring, as well as metadata management APIs.
+    And we got a real need to deliver the best possible performance and scalability since the data pipeline was managing
+    terabytes of data on a daily basis.

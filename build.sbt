@@ -13,6 +13,9 @@ lazy val commonSettings = Seq(
   sources in (Compile, doc) := Seq.empty
 )
 
+libraryDependencies += "org.typelevel" %% "cats-core" % "2.9.0"
+
+
 lazy val root: Project = (project in file("."))
   .enablePlugins(PlayScala)
   .settings(commonSettings: _*)
